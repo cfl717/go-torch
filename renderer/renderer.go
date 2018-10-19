@@ -26,7 +26,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/uber/go-torch/stack"
+	"github.com/cfl717/go-torch/stack"
 )
 
 // ToFlameInput converts the given profile to flame graph input.
