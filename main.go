@@ -29,9 +29,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/uber/go-torch/pprof"
-	"github.com/uber/go-torch/renderer"
-	"github.com/uber/go-torch/torchlog"
+	"github.com/cfl717/go-torch/pprof"
+	"github.com/cfl717/go-torch/renderer"
+	"github.com/cfl717/go-torch/torchlog"
 
 	gflags "github.com/jessevdk/go-flags"
 )
