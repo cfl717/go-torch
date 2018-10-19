@@ -25,6 +25,7 @@ import (
 	"errors"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 var errNoPerlScript = errors.New("Cannot find flamegraph scripts in the PATH or current " +
@@ -73,5 +74,14 @@ func GenerateFlameGraph(graphInput []byte, args ...string) ([]byte, error) {
 		return nil, errNoPerlScript
 	}
 
-	return runScript(flameGraph, args, graphInput)
+	result, err := runScript(flameGraph, args, graphInput)
+	if err != nil && strings.Contains(err.Error(), "is not a valid Win32"){
+		newArgs := make([]string, len(args) + 1)
+		newArgs[0] = flameGraph
+		if len(args) != 0 {
+			copy(newArgs[1:], args[:])
+		}
+		return runScript("perl", newArgs, graphInput)
+	}
+	return result, err
 }
